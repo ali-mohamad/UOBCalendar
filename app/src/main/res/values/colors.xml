@@ -2,4 +2,7 @@
 <resources>
     <color name="grid_bg">#FFFFFFFF</color>
     <color name="grid_border">#FFC6C6C6</color>
+    <color name="blue">#ff2570ba</color>
+    <color name="grey">#f7f7f7</color>
+
 </resources>
