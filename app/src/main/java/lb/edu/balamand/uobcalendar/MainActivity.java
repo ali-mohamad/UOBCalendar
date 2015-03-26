@@ -17,7 +17,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
-public class MainActivity extends Activity implements OnItemClickListener {
+public class MainActivity extends Activity {
 
     ListView listView;
     List<Item> arrayOfList;
@@ -44,16 +44,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
         return true;
     }
 
-    private void LoadItemsAsync() {
-        if (Utils.isNetworkAvailable(MainActivity.this)) {
-            new MyTask().execute(rssFeed);
-        } else {
-            showToast("No Network Connection!!!");
-        }
-    }
-    public void showToast(String msg) {
 
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -69,57 +60,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Item item = arrayOfList.get(position);
-        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-        intent.putExtra("url", item.getLink());
-        intent.putExtra("title", item.getTitle());
-        intent.putExtra("desc", item.getDesc());
-        startActivity(intent);
-    }
 
-    public void setAdapterToListview() {
-        NewsRowAdapter objAdapter = new NewsRowAdapter(MainActivity.this,
-                R.layout.row, arrayOfList);
-        listView.setAdapter(objAdapter);
-    }
 
-    class MyTask extends AsyncTask<String, Void, Void> {
 
-        ProgressDialog pDialog;
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
 
-            pDialog = new ProgressDialog(MainActivity.this);
-            pDialog.setMessage("Loading...");
-            pDialog.show();
-
-        }
-
-        @Override
-        protected Void doInBackground(String... params) {
-            arrayOfList = new NamesParser().getData(params[0]);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            if (null != pDialog && pDialog.isShowing()) {
-                pDialog.dismiss();
-            }
-
-            if (null == arrayOfList || arrayOfList.size() == 0) {
-                showToast("No data found from web!!!");
-                MainActivity.this.finish();
-            } else {
-                setAdapterToListview();
-            }
-
-        }
-    }
 }
