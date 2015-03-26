@@ -1,5 +1,6 @@
 package lb.edu.balamand.uobcalendar;
 
+import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -28,10 +29,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
         setContentView(R.layout.activity_main);
         setTitle(R.string.title);
 
-        listView = (ListView) findViewById(R.id.listview);
-        listView.setOnItemClickListener(this);
+        //listView = (ListView) findViewById(R.id.listview);
+        //listView.setOnItemClickListener(this);
 
-        LoadItemsAsync();
+        //LoadItemsAsync();
 
     }
 

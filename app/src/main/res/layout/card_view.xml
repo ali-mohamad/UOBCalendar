@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/title"
+        android:background="@color/titleBg"/>
 
     <LinearLayout
         style="@style/CalendarCard.Days"
@@ -18,56 +20,64 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/cardTitle">
+        android:layout_below="@+id/cardTitle"
+        android:background="@color/calBg">
 
         <TextView
             android:id="@+id/cardDay1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/CalendarCard.Day" />
+            style="@style/CalendarCard.Day"
+            android:textColor="@color/dayColor"/>
 
         <TextView
             android:id="@+id/cardDay2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/CalendarCard.Day" />
+            style="@style/CalendarCard.Day"
+            android:textColor="@color/dayColor"/>
 
         <TextView
             android:id="@+id/cardDay3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/CalendarCard.Day" />
+            style="@style/CalendarCard.Day"
+            android:textColor="@color/dayColor"/>
 
         <TextView
             android:id="@+id/cardDay4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/CalendarCard.Day" />
+            style="@style/CalendarCard.Day"
+            android:textColor="@color/dayColor"/>
 
         <TextView
             android:id="@+id/cardDay5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/CalendarCard.Day" />
+            style="@style/CalendarCard.Day"
+            android:textColor="@color/dayColor"/>
 
         <TextView
             android:id="@+id/cardDay6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/CalendarCard.Day" />
+            style="@style/CalendarCard.Day"
+            android:textColor="@color/dayColor"/>
 
         <TextView
             android:id="@+id/cardDay7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/CalendarCard.Day" />
+            style="@style/CalendarCard.Day"
+            android:textColor="@color/dayColor"/>
 
     </LinearLayout>
 

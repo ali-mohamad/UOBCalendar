@@ -8,12 +8,12 @@
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="UOB Calendar"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/CustomActionBarTheme" >
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:label="UOB Calendar"
-            android:icon="@drawable/ic_launcher">
+            android:icon="@drawable/logo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

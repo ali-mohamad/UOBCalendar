@@ -4,5 +4,8 @@
     <color name="grid_border">#FFC6C6C6</color>
     <color name="blue">#ff2570ba</color>
     <color name="grey">#f7f7f7</color>
-
+<color name="dayColor">#EF4F69</color>
+    <color name="title">#495468</color>
+    <color name="titleBg">#FFFFFF</color>
+    <color name="calBg">#F6F6F6</color>
 </resources>
