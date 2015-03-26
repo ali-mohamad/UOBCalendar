@@ -27,7 +27,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle(R.string.title);
+       // setTitle(R.string.title);
 
         //listView = (ListView) findViewById(R.id.listview);
         //listView.setOnItemClickListener(this);

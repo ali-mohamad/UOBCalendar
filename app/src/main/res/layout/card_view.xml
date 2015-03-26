@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:textColor="@color/title"
-        android:background="@color/titleBg"/>
+        android:background="@drawable/titleline"/>
 
     <LinearLayout
         style="@style/CalendarCard.Days"
@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/cardTitle"
-        android:background="@color/calBg">
+        android:background="@color/calBg"
+        >
 
         <TextView
             android:id="@+id/cardDay1"
