@@ -6,6 +6,8 @@
     <color name="grey">#f7f7f7</color>
 <color name="dayColor">#EF4F69</color>
     <color name="title">#495468</color>
+    <color name="month">#495468</color>
+    <color name="year">#CAD4E0</color>
     <color name="titleBg">#FFFFFF</color>
     <color name="calBg">#F6F6F6</color>
 </resources>

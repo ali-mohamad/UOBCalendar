@@ -3,17 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     style="@style/CalendarCard.Root">
-
-    <TextView
-        style="@style/CalendarCard.Title"
+    <LinearLayout
         android:id="@+id/cardTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:textColor="@color/title"
-        android:background="@drawable/titleline"/>
-
+        android:orientation="vertical"
+        android:background="@drawable/titleline">
+        <TextView
+            style="@style/CalendarCard.Month"
+            android:id="@+id/cardMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/month"
+            />
+        <TextView
+            style="@style/CalendarCard.Year"
+            android:id="@+id/cardYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/year"
+            />
+    </LinearLayout>
     <LinearLayout
         style="@style/CalendarCard.Days"
         android:id="@+id/cardDays"

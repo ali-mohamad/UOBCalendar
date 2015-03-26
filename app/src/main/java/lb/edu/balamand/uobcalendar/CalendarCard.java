@@ -20,7 +20,8 @@ import lb.edu.balamand.uobcalendar.R;
  */
 public class CalendarCard extends RelativeLayout {
 
-    private TextView cardTitle;
+    private TextView cardMonth;
+    private TextView cardYear;
     private int itemLayout = R.layout.card_item_simple;
     private OnItemRender mOnItemRender;
     private OnItemRender mOnItemRenderDefault;
@@ -51,10 +52,12 @@ public class CalendarCard extends RelativeLayout {
         if (dateDisplay == null)
             dateDisplay = Calendar.getInstance();
 
-        cardTitle = (TextView)layout.findViewById(R.id.cardTitle);
+        cardMonth = (TextView)layout.findViewById(R.id.cardMonth);
+        cardYear = (TextView)layout.findViewById(R.id.cardYear);
         cardGrid = (LinearLayout)layout.findViewById(R.id.cardGrid);
 
-        cardTitle.setText(new SimpleDateFormat("MMM yyyy", Locale.getDefault()).format(dateDisplay.getTime()));
+        cardMonth.setText(new SimpleDateFormat("MMMM", Locale.getDefault()).format(dateDisplay.getTime()));
+        cardYear.setText(new SimpleDateFormat("yyyy",Locale.getDefault()).format(dateDisplay.getTime()));
 
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
@@ -222,7 +225,8 @@ public class CalendarCard extends RelativeLayout {
 
     public void setDateDisplay(Calendar dateDisplay) {
         this.dateDisplay = dateDisplay;
-        cardTitle.setText(new SimpleDateFormat("MMM yyyy", Locale.getDefault()).format(dateDisplay.getTime()));
+        cardMonth.setText(new SimpleDateFormat("MMMM", Locale.getDefault()).format(dateDisplay.getTime()));
+        cardYear.setText(new SimpleDateFormat("yyyy",Locale.getDefault()).format(dateDisplay.getTime()));
     }
 
     public OnCellItemClick getOnCellItemClick() {

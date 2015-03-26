@@ -37,11 +37,22 @@
     </style>
 
     <style name="CalendarCard.Title">
-        <item name="android:padding">10dp</item>
-        <item name="android:textSize">20sp</item>
+        <!--<item name="android:padding">10dp</item> -->
+
+        <item name="android:textSize">10sp</item>
         <item name="android:gravity">center</item>
 
     </style>
+    <style name="CalendarCard.Month">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+        <style name="CalendarCard.Year">
+            <item name="android:paddingBottom">10dp</item>
+            <item name="android:textSize">14sp</item>
+            <item name="android:gravity">center</item>
+        </style>
 
     <style name="CalendarCard.Grid">
         <item name="android:background">@drawable/card_grid_bg</item>
