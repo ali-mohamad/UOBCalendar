@@ -4,15 +4,13 @@
     <style name="CustomActionBarTheme"
       parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
-
         <!-- Customize your theme here. -->
-
     </style>
 
     <!-- ActionBar styles -->
     <style name="MyActionBar"
         parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">#EF4F69</item>
+        <item name="android:background">#697083</item>
     </style>
 
     <style name="CalendarCard">
@@ -22,8 +20,6 @@
     <style name="CalendarCard.Root">
         <item name="android:padding">10dp</item>
     </style>
-
-
 
     <style name="CalendarCard.Day">
         <item name="android:paddingBottom">5dp</item>
