@@ -22,6 +22,7 @@ public class MainActivity extends Activity {
         setToday();
         DatabaseHandler db = new DatabaseHandler(this);
 
+
         if(!getDatabasePath(db.getDatabaseName()).exists()) {
 
             Event e = new Event();
@@ -40,6 +41,7 @@ public class MainActivity extends Activity {
         int nofEv = v.size();
         String numberOfEvent = String.valueOf(nofEv);
         Toast.makeText(getApplicationContext(), numberOfEvent , Toast.LENGTH_LONG).show();
+
 
     }
 

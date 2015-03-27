@@ -7,6 +7,8 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
+
 /**
  * Created by Lenovo on 3/25/2015.
  */
@@ -21,24 +23,24 @@ public class CardPagerAdapter extends PagerAdapter {
 
 
     @Override
-    public Object instantiateItem(View collection, final int position) {
+    public Object instantiateItem(ViewGroup collection, final int position) {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.MONTH, position);
         CalendarCard card = new CalendarCard(mContext);
         card.setDateDisplay(cal);
         card.notifyChanges();
-       // card.highlightToday();
+
         if (card.getOnCellItemClick() == null)
             card.setOnCellItemClick(defaultOnCellItemClick);
 
-        ((ViewPager) collection).addView(card,0);
+        collection.addView(card, 0);
 
         return card;
     }
 
     @Override
-    public void destroyItem(View collection, int position, Object view) {
-        ((ViewPager) collection).removeView((View) view);
+    public void destroyItem(ViewGroup collection, int position, Object view) {
+        ((ViewGroup) collection).removeView((View) view);
     }
 
     @Override
