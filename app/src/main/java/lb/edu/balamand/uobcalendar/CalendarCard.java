@@ -3,9 +3,12 @@ package lb.edu.balamand.uobcalendar;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +96,7 @@ public class CalendarCard extends RelativeLayout {
                 });
 
                 View cellContent = la.inflate(itemLayout, cell, false);
+
                 cell.addView(cellContent);
                 cells.add(cell);
             }
@@ -104,6 +108,27 @@ public class CalendarCard extends RelativeLayout {
             @Override
             public void onRender(CheckableLayout v, CardGridItem item) {
                 ((TextView)v.getChildAt(0)).setText(item.getDayOfMonth().toString());
+               // if( (item.getDayOfMonth() == Calendar.getInstance().get(Calendar.DATE)) &&
+                 //       (item.getMonth() == Calendar.getInstance().get(Calendar.MONTH)) &&
+                   //     (item.getYear() == Calendar.getInstance().get(Calendar.YEAR)))
+                if(item.isEnabled()) {
+                    if(item.getDate() != null) {
+                        if( ( item.getDayOfMonth() == Calendar.getInstance().get(Calendar.DAY_OF_MONTH) ) &&
+                                ( item.getDate().get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH) ) &&
+                                ( item.getDate().get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR) ) )
+                        {
+                            ((TextView)v.getChildAt(0)).setBackgroundResource(R.drawable.today);
+
+                        }
+                            //((TextView)v.getChildAt(0)).setTextColor(Color.parseColor("#EF4F69"));
+                        else {
+                            ((TextView)v.getChildAt(0)).setBackgroundResource(0);
+                        }
+                    } else ((TextView)v.getChildAt(0)).setBackgroundResource(0);
+                } else ((TextView)v.getChildAt(0)).setBackgroundResource(0);
+
+                   // ((TextView)v.getChildAt(0)).setTextColor(Color.parseColor("#EF4F69"));
+              //  else ((TextView)v.getChildAt(0)).setTextColor(Color.parseColor("#6D728B"));
             }
         };
 
@@ -140,7 +165,7 @@ public class CalendarCard extends RelativeLayout {
             prevMonth.set(Calendar.DAY_OF_MONTH, prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH) - daySpacing + 1);
             for(int i=0; i<daySpacing; i++) {
                 CheckableLayout cell = cells.get(counter);
-                cell.setTag(new CardGridItem(Integer.valueOf(prevMonth.get(Calendar.DAY_OF_MONTH))).setEnabled(false));
+                cell.setTag(new CardGridItem(Integer.valueOf(prevMonth.get(Calendar.DAY_OF_MONTH))).setEnabled(false).setDate(null));
                 cell.setEnabled(false);
                 (mOnItemRender == null ? mOnItemRenderDefault : mOnItemRender).onRender(cell, (CardGridItem)cell.getTag());
                 counter++;
@@ -148,6 +173,7 @@ public class CalendarCard extends RelativeLayout {
             }
         }
 
+        Calendar putInTag = (Calendar)cal.clone();
         int firstDay = cal.get(Calendar.DAY_OF_MONTH);
         cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
         int lastDay = cal.get(Calendar.DAY_OF_MONTH)+1;
@@ -159,6 +185,7 @@ public class CalendarCard extends RelativeLayout {
             cell.setTag(new CardGridItem(i).setEnabled(true).setDate(date));
             cell.setEnabled(true);
             cell.setVisibility(View.VISIBLE);
+
             (mOnItemRender == null ? mOnItemRenderDefault : mOnItemRender).onRender(cell, (CardGridItem)cell.getTag());
             counter++;
         }
@@ -168,14 +195,19 @@ public class CalendarCard extends RelativeLayout {
         else
             cal = Calendar.getInstance();
 
+        putInTag = (Calendar)cal.clone();
+        putInTag.add(Calendar.DAY_OF_MONTH,1);
+
         cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 
         daySpacing = getDaySpacingEnd(cal.get(Calendar.DAY_OF_WEEK));
 
+
+
         if (daySpacing > 0) {
             for(int i=0; i<daySpacing; i++) {
                 CheckableLayout cell = cells.get(counter);
-                cell.setTag(new CardGridItem(i+1).setEnabled(false)); // .setDate((Calendar)cal.clone())
+                cell.setTag(new CardGridItem(i+1).setEnabled(false).setDate(null)); // .setDate((Calendar)cal.clone())
                 cell.setEnabled(false);
                 cell.setVisibility(View.VISIBLE);
                 (mOnItemRender == null ? mOnItemRenderDefault : mOnItemRender).onRender(cell, (CardGridItem)cell.getTag());
@@ -227,6 +259,12 @@ public class CalendarCard extends RelativeLayout {
         this.dateDisplay = dateDisplay;
         cardMonth.setText(new SimpleDateFormat("MMMM", Locale.getDefault()).format(dateDisplay.getTime()));
         cardYear.setText(new SimpleDateFormat("yyyy",Locale.getDefault()).format(dateDisplay.getTime()));
+
+    }
+
+    public void highlightToday(){
+        setDateDisplay(Calendar.getInstance());
+        notifyChanges();
     }
 
     public OnCellItemClick getOnCellItemClick() {

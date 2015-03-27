@@ -8,12 +8,31 @@ import java.util.Calendar;
 public class CardGridItem {
 
     private Integer dayOfMonth;
+    private Integer Month;
+    private Integer Year;
     private Object data;
     private boolean enabled = true;
     private Calendar date;
 
     public CardGridItem(Integer dom) {
         setDayOfMonth(dom);
+
+    }
+
+    public Integer getYear() {
+        return Year;
+    }
+
+    public void setYear(Integer year) {
+        Year = year;
+    }
+
+    public Integer getMonth() {
+        return Month;
+    }
+
+    public void setMonth(Integer month) {
+        Month = month;
     }
 
     public Integer getDayOfMonth() {
@@ -33,6 +52,7 @@ public class CardGridItem {
         this.data = data;
         return this;
     }
+
 
     public boolean isEnabled() {
         return enabled;

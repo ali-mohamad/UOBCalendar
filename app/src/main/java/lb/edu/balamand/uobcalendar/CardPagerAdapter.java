@@ -19,6 +19,7 @@ public class CardPagerAdapter extends PagerAdapter {
         mContext = ctx;
     }
 
+
     @Override
     public Object instantiateItem(View collection, final int position) {
         Calendar cal = Calendar.getInstance();
@@ -26,6 +27,7 @@ public class CardPagerAdapter extends PagerAdapter {
         CalendarCard card = new CalendarCard(mContext);
         card.setDateDisplay(cal);
         card.notifyChanges();
+       // card.highlightToday();
         if (card.getOnCellItemClick() == null)
             card.setOnCellItemClick(defaultOnCellItemClick);
 

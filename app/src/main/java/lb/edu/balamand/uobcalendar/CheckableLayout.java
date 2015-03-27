@@ -13,6 +13,7 @@ public class CheckableLayout extends RelativeLayout implements Checkable {
             android.R.attr.state_checked
     };
 
+
     private boolean checked = false;
 
     @SuppressLint("NewApi")
@@ -39,7 +40,6 @@ public class CheckableLayout extends RelativeLayout implements Checkable {
 			}
 		});*/
     }
-
     @Override
     public boolean isChecked() {
         return checked;

@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupClickCellCalendar();
+        setToday();
         DatabaseHandler db = new DatabaseHandler(this);
 
         if(!getDatabasePath(db.getDatabaseName()).exists()) {
@@ -42,16 +43,21 @@ public class MainActivity extends Activity {
 
     }
 
+    private void setToday() {
+
+    }
+
     private void setupClickCellCalendar(){
        // myCalendar = (CalendarCard)findViewById(R.id.calendarCard1);
         myCalendar = ((CalendarCardPager)findViewById(R.id.calendarCard1));
         myCalendar.setOnCellItemClick(new OnCellItemClick() {
             @Override
             public void onCellClick(View v, CardGridItem item) {
-                Toast toast = Toast.makeText(getApplicationContext(),item.getDate().getTime().toString(), Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(),item.getDayOfMonth().toString(), Toast.LENGTH_LONG);
                 toast.show();
             }
         });
+
 }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,6 +76,7 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
 
