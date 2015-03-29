@@ -107,6 +107,12 @@ public class CalendarCard extends RelativeLayout {
         mOnItemRenderDefault = new OnItemRender() {
             @Override
             public void onRender(CheckableLayout v, CardGridItem item) {
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View eve = inflater.inflate(R.layout.card_event, v, false);
+               eve.setBackgroundResource(R.drawable.event_oval);
+
+                v.addView(eve);
+
                 ((TextView)v.getChildAt(0)).setText(item.getDayOfMonth().toString());
                // if( (item.getDayOfMonth() == Calendar.getInstance().get(Calendar.DATE)) &&
                  //       (item.getMonth() == Calendar.getInstance().get(Calendar.MONTH)) &&
@@ -118,6 +124,7 @@ public class CalendarCard extends RelativeLayout {
                                 ( item.getDate().get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR) ) )
                         {
                             ((TextView)v.getChildAt(0)).setBackgroundResource(R.drawable.today);
+                            eve.setVisibility(View.INVISIBLE);
 
                         }
                             //((TextView)v.getChildAt(0)).setTextColor(Color.parseColor("#EF4F69"));
@@ -129,6 +136,7 @@ public class CalendarCard extends RelativeLayout {
 
                    // ((TextView)v.getChildAt(0)).setTextColor(Color.parseColor("#EF4F69"));
               //  else ((TextView)v.getChildAt(0)).setTextColor(Color.parseColor("#6D728B"));
+
             }
         };
 

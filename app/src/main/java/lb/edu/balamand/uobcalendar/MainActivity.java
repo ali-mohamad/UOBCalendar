@@ -19,35 +19,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupClickCellCalendar();
-        setToday();
-        DatabaseHandler db = new DatabaseHandler(this);
-
-
-        if(!getDatabasePath(db.getDatabaseName()).exists()) {
-
-            Event e = new Event();
-            e.set_title("test");
-            e.set_description("desc");
-            e.set_from_date("1");
-            e.set_to_date("2");
-            e.set_isHoliday(0);
-
-            db.addEvent(e);
-        }
-
-
-        List<Event> v = db.getAllEvents();
-
-        int nofEv = v.size();
-        String numberOfEvent = String.valueOf(nofEv);
-        Toast.makeText(getApplicationContext(), numberOfEvent , Toast.LENGTH_LONG).show();
-
+        CalendarDbAdapter cDbAdapter = new CalendarDbAdapter(this);
+        cDbAdapter.initializeDatabase("/data/data/lb.edu.balamand.uobcalendar/databases/");
+        cDbAdapter.close();
 
     }
 
-    private void setToday() {
-
-    }
 
     private void setupClickCellCalendar(){
        // myCalendar = (CalendarCard)findViewById(R.id.calendarCard1);

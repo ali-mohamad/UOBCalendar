@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Checkable;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 /**
  * Created by Lenovo on 3/25/2015.
