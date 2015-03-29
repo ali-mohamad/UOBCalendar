@@ -90,15 +90,18 @@ public class CalendarCard extends RelativeLayout {
                     }
                 });
 
-                View eve = la.inflate(R.layout.card_event, cell, false);
-                eve.setBackgroundResource(R.drawable.event_oval);
-                eve.setVisibility(View.INVISIBLE);
-                cell.addView(eve);
+
 
                 View cellContent = la.inflate(itemLayout, cell, false);
                 cellContent.setBackgroundResource(0);
 
                 cell.addView(cellContent);
+
+                View eve = la.inflate(R.layout.card_event, cell, false);
+                eve.setBackgroundResource(R.drawable.event_oval);
+                eve.setVisibility(View.INVISIBLE);
+                cell.addView(eve);
+
                 cells.add(cell);
             }
         }
@@ -108,16 +111,16 @@ public class CalendarCard extends RelativeLayout {
         mOnItemRenderDefault = new OnItemRender() {
             @Override
             public void onRender(CheckableLayout v, CardGridItem item) {
-                ((View) v.getChildAt(0)).setVisibility(View.INVISIBLE);
-                ((TextView) v.getChildAt(1)).setBackgroundResource(0);
+                ((View) v.getChildAt(1)).setVisibility(View.INVISIBLE);
+                ((TextView) v.getChildAt(0)).setBackgroundResource(0);
 
-                ((TextView) v.getChildAt(1)).setText(item.getDayOfMonth().toString());
+                ((TextView) v.getChildAt(0)).setText(item.getDayOfMonth().toString());
                 if (item.isEnabled()) {
                     if (item.getDate() != null) {
                         if (CheckAvailableEvent(item.getDate()))
-                            ((View) v.getChildAt(0)).setVisibility(View.VISIBLE);
+                            ((View) v.getChildAt(1)).setVisibility(View.VISIBLE);
                         if (Utils.isSameDay(item, Calendar.getInstance()))
-                            ((TextView) v.getChildAt(1)).setBackgroundResource(R.drawable.today);
+                            ((TextView) v.getChildAt(0)).setBackgroundResource(R.drawable.today);
                     }
                 }
             }
