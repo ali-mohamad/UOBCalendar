@@ -4,13 +4,19 @@
     <style name="CustomActionBarTheme"
       parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <!-- Customize your theme here. -->
+
     </style>
 
     <!-- ActionBar styles -->
     <style name="MyActionBar"
-        parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">#697083</item>
+        parent="@android:style/Widget.Holo.Light.ActionBar">
+       <item name="android:background">#fff3f3f3</item>
+        <item name="android:titleTextStyle">@style/TitleTextStyle</item>
+
+    </style>
+
+    <style name="TitleTextStyle" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#495468</item>
     </style>
 
     <style name="CalendarCard">

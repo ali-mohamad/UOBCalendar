@@ -2,6 +2,7 @@ package lb.edu.balamand.uobcalendar;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +19,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         setupClickCellCalendar();
         CalendarDbAdapter cDbAdapter = new CalendarDbAdapter(this);
         cDbAdapter.initializeDatabase("/data/data/lb.edu.balamand.uobcalendar/databases/");
@@ -36,16 +38,15 @@ public class MainActivity extends Activity {
         myCalendar.setOnCellItemClick(new OnCellItemClick() {
             @Override
             public void onCellClick(View v, CardGridItem item) {
-                Toast toast = Toast.makeText(getApplicationContext(),item.getDayOfMonth().toString(), Toast.LENGTH_LONG);
-                toast.show();
+               // Toast toast = Toast.makeText(getApplicationContext(),item.getDayOfMonth().toString(), Toast.LENGTH_LONG);
+               // toast.show();
             }
         });
 
 }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -55,15 +56,14 @@ public class MainActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_today:
+                myCalendar.setCurrentItem(0);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 
 

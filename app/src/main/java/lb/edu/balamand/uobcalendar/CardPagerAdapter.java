@@ -33,6 +33,7 @@ public class CardPagerAdapter extends PagerAdapter {
         if (card.getOnCellItemClick() == null)
             card.setOnCellItemClick(defaultOnCellItemClick);
 
+
         collection.addView(card, 0);
 
         return card;
@@ -60,7 +61,7 @@ public class CardPagerAdapter extends PagerAdapter {
     @Override
     public int getCount() {
         // TODO almoast ifinite ;-)
-        return Integer.MAX_VALUE;
+        return 120;
     }
 
     public OnCellItemClick getDefaultOnCellItemClick() {
