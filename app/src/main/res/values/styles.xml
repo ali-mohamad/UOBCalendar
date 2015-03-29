@@ -68,5 +68,20 @@
         <item name="android:layout_marginTop">1dp</item>
     </style>
 
+    <style name="day">
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="month">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/monthdetail</item>
+    </style>
+
 
 </resources>

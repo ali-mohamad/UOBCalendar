@@ -10,4 +10,5 @@
     <color name="year">#CAD4E0</color>
     <color name="titleBg">#FFFFFF</color>
     <color name="calBg">#F6F6F6</color>
+    <color name="dateTime">#888888</color>
 </resources>

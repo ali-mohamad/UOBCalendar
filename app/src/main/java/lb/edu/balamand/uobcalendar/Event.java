@@ -1,9 +1,11 @@
 package lb.edu.balamand.uobcalendar;
 
+import java.io.Serializable;
+
 /**
  * Created by Lenovo on 3/27/2015.
  */
-public class Event {
+public class Event implements Serializable {
     int _id;
     String _title;
     String _description;
@@ -89,5 +91,10 @@ public class Event {
 
     public void set_isHoliday(int _isHoliday) {
         this._isHoliday = _isHoliday;
+    }
+
+    @Override
+    public String toString() {
+      return get_title() + "\n" + get_description();
     }
 }

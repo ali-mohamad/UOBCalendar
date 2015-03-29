@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="20dip"
+    android:background="@drawable/bg"
+    android:layout_gravity="center"
+    android:baselineAligned="false">
+    style="@style/CalendarCard.Root">
+    <LinearLayout
+        android:id="@+id/cardTitle"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="@drawable/titleline">
+        <TextView
+            style="@style/day"
+            android:id="@+id/Day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/month"
+            />
+        <TextView
+            style="@style/month"
+            android:id="@+id/Month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/dateTime"
+            />
+        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+
+            android:id="@+id/eventlistview"
+            tools:context=".EventActivity"  />
+  </LinearLayout>
+
+</RelativeLayout>

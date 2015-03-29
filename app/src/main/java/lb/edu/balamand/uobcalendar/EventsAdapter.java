@@ -34,12 +34,18 @@ public class EventsAdapter {
             SimpleDateFormat sdp = new SimpleDateFormat("dd/MM/yyyy-HH:mm");
             for(Event v:events) {
                 Date c = sdp.parse(v.get_from_date(), new ParsePosition(0));
+                Date t = sdp.parse(v.get_to_date(),new ParsePosition(0));
                 if(c != null) {
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(c);
                     if(Utils.isSameDay(cal,date)) return true;
                 }
-                else continue;
+              //  if(c != null && t != null) {
+                   // if(!Utils.isSameDay(c,t)) {
+
+                   // }
+              // }
+              //  else continue;
             }
             return false;
         }

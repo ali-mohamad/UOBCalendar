@@ -12,7 +12,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -134,6 +138,18 @@ public class CalendarDbAdapter extends SQLiteOpenHelper {
         return event;
     }
 
+    public ArrayList<Event> getAllEvents(Calendar cal){
+        ArrayList<Event> v = new ArrayList<Event>();
+        List<Event> lv = getAllEvents();
+        SimpleDateFormat sdp = new SimpleDateFormat("dd/MM/yyyy-HH:mm");
+        for(Event event:lv){
+            Date c = sdp.parse(event.get_from_date(), new ParsePosition(0));
+            Calendar c2 = Calendar.getInstance();
+            c2.setTime(c);
+            if(Utils.isSameDay(cal,c2)) v.add(event);
+        }
+        return v;
+    }
     public List<Event> getAllEvents() {
         List<Event> eventList = new ArrayList<Event>();
         // Select All Query

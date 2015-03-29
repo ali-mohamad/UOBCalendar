@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class Utils {
     public static boolean isNetworkAvailable(Activity activity) {
@@ -35,6 +36,14 @@ public class Utils {
                 c1.get(Calendar.MONTH) == c2.get(Calendar.MONTH) &&
                 c1.get(Calendar.DAY_OF_MONTH) == c2.get(Calendar.DAY_OF_MONTH)) return true;
         else return false;
+    }
+
+    public static boolean isSameDay(Date d1, Date d2) {
+        if (d1.getDay() == d2.getDay() &&
+            d1.getMonth() == d2.getMonth() &&
+            d1.getYear() == d2.getYear()) {
+            return true;
+        } else return false;
     }
 
     public static boolean isSameDay(CardGridItem i, Calendar c) {
