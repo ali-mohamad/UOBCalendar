@@ -21,8 +21,12 @@ public class MainActivity extends Activity {
         setupClickCellCalendar();
         CalendarDbAdapter cDbAdapter = new CalendarDbAdapter(this);
         cDbAdapter.initializeDatabase("/data/data/lb.edu.balamand.uobcalendar/databases/");
+        cDbAdapter.open();
+        EventsAdapter.setEvents(cDbAdapter.getAllEvents());
+
         cDbAdapter.close();
 
+        myCalendar.getCardPagerAdapter().notifyDataSetChanged();
     }
 
 

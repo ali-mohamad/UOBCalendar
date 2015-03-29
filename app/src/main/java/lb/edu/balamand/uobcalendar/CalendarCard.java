@@ -1,14 +1,6 @@
 package lb.edu.balamand.uobcalendar;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import lb.edu.balamand.uobcalendar.R;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Created by Lenovo on 3/25/2015.
@@ -55,47 +50,53 @@ public class CalendarCard extends RelativeLayout {
         if (dateDisplay == null)
             dateDisplay = Calendar.getInstance();
 
-        cardMonth = (TextView)layout.findViewById(R.id.cardMonth);
-        cardYear = (TextView)layout.findViewById(R.id.cardYear);
-        cardGrid = (LinearLayout)layout.findViewById(R.id.cardGrid);
+        cardMonth = (TextView) layout.findViewById(R.id.cardMonth);
+        cardYear = (TextView) layout.findViewById(R.id.cardYear);
+        cardGrid = (LinearLayout) layout.findViewById(R.id.cardGrid);
 
         cardMonth.setText(new SimpleDateFormat("MMMM", Locale.getDefault()).format(dateDisplay.getTime()));
-        cardYear.setText(new SimpleDateFormat("yyyy",Locale.getDefault()).format(dateDisplay.getTime()));
+        cardYear.setText(new SimpleDateFormat("yyyy", Locale.getDefault()).format(dateDisplay.getTime()));
 
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-        ((TextView)layout.findViewById(R.id.cardDay1)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
+        ((TextView) layout.findViewById(R.id.cardDay1)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
         cal.add(Calendar.DAY_OF_WEEK, 1);
-        ((TextView)layout.findViewById(R.id.cardDay2)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
+        ((TextView) layout.findViewById(R.id.cardDay2)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
         cal.add(Calendar.DAY_OF_WEEK, 1);
-        ((TextView)layout.findViewById(R.id.cardDay3)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
+        ((TextView) layout.findViewById(R.id.cardDay3)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
         cal.add(Calendar.DAY_OF_WEEK, 1);
-        ((TextView)layout.findViewById(R.id.cardDay4)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
+        ((TextView) layout.findViewById(R.id.cardDay4)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
         cal.add(Calendar.DAY_OF_WEEK, 1);
-        ((TextView)layout.findViewById(R.id.cardDay5)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
+        ((TextView) layout.findViewById(R.id.cardDay5)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
         cal.add(Calendar.DAY_OF_WEEK, 1);
-        ((TextView)layout.findViewById(R.id.cardDay6)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
+        ((TextView) layout.findViewById(R.id.cardDay6)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
         cal.add(Calendar.DAY_OF_WEEK, 1);
-        ((TextView)layout.findViewById(R.id.cardDay7)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
+        ((TextView) layout.findViewById(R.id.cardDay7)).setText(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()));
 
         LayoutInflater la = LayoutInflater.from(ctx);
-        for(int y=0; y<cardGrid.getChildCount(); y++) {
-            LinearLayout row = (LinearLayout)cardGrid.getChildAt(y);
-            for(int x=0; x<row.getChildCount(); x++) {
-                CheckableLayout cell = (CheckableLayout)row.getChildAt(x);
+        for (int y = 0; y < cardGrid.getChildCount(); y++) {
+            LinearLayout row = (LinearLayout) cardGrid.getChildAt(y);
+            for (int x = 0; x < row.getChildCount(); x++) {
+                CheckableLayout cell = (CheckableLayout) row.getChildAt(x);
                 cell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        for(CheckableLayout c : cells)
+                        for (CheckableLayout c : cells)
                             c.setChecked(false);
-                        ((CheckableLayout)v).setChecked(true);
+                        ((CheckableLayout) v).setChecked(true);
 
-                        if (getOnCellItemClick()!= null)
-                            getOnCellItemClick().onCellClick(v, (CardGridItem)v.getTag()); // TODO create item
+                        if (getOnCellItemClick() != null)
+                            getOnCellItemClick().onCellClick(v, (CardGridItem) v.getTag()); // TODO create item
                     }
                 });
 
+                View eve = la.inflate(R.layout.card_event, cell, false);
+                eve.setBackgroundResource(R.drawable.event_oval);
+                eve.setVisibility(View.INVISIBLE);
+                cell.addView(eve);
+
                 View cellContent = la.inflate(itemLayout, cell, false);
+                cellContent.setBackgroundResource(0);
 
                 cell.addView(cellContent);
                 cells.add(cell);
@@ -107,40 +108,28 @@ public class CalendarCard extends RelativeLayout {
         mOnItemRenderDefault = new OnItemRender() {
             @Override
             public void onRender(CheckableLayout v, CardGridItem item) {
-                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View eve = inflater.inflate(R.layout.card_event, v, false);
-               eve.setBackgroundResource(R.drawable.event_oval);
+                ((View) v.getChildAt(0)).setVisibility(View.INVISIBLE);
+                ((TextView) v.getChildAt(1)).setBackgroundResource(0);
 
-                v.addView(eve);
-
-                ((TextView)v.getChildAt(0)).setText(item.getDayOfMonth().toString());
-               // if( (item.getDayOfMonth() == Calendar.getInstance().get(Calendar.DATE)) &&
-                 //       (item.getMonth() == Calendar.getInstance().get(Calendar.MONTH)) &&
-                   //     (item.getYear() == Calendar.getInstance().get(Calendar.YEAR)))
-                if(item.isEnabled()) {
-                    if(item.getDate() != null) {
-                        if( ( item.getDayOfMonth() == Calendar.getInstance().get(Calendar.DAY_OF_MONTH) ) &&
-                                ( item.getDate().get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH) ) &&
-                                ( item.getDate().get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR) ) )
-                        {
-                            ((TextView)v.getChildAt(0)).setBackgroundResource(R.drawable.today);
-                            eve.setVisibility(View.INVISIBLE);
-
-                        }
-                            //((TextView)v.getChildAt(0)).setTextColor(Color.parseColor("#EF4F69"));
-                        else {
-                            ((TextView)v.getChildAt(0)).setBackgroundResource(0);
-                        }
-                    } else ((TextView)v.getChildAt(0)).setBackgroundResource(0);
-                } else ((TextView)v.getChildAt(0)).setBackgroundResource(0);
-
-                   // ((TextView)v.getChildAt(0)).setTextColor(Color.parseColor("#EF4F69"));
-              //  else ((TextView)v.getChildAt(0)).setTextColor(Color.parseColor("#6D728B"));
-
+                ((TextView) v.getChildAt(1)).setText(item.getDayOfMonth().toString());
+                if (item.isEnabled()) {
+                    if (item.getDate() != null) {
+                        if (CheckAvailableEvent(item.getDate()))
+                            ((View) v.getChildAt(0)).setVisibility(View.VISIBLE);
+                        if (Utils.isSameDay(item, Calendar.getInstance()))
+                            ((TextView) v.getChildAt(1)).setBackgroundResource(R.drawable.today);
+                    }
+                }
             }
         };
 
         updateCells();
+    }
+
+    private boolean CheckAvailableEvent(Calendar date) {
+        if (EventsAdapter.getCheckAvailability(date)) return true;
+        else
+            return false;
     }
 
     private int getDaySpacing(int dayOfWeek) {
@@ -158,7 +147,7 @@ public class CalendarCard extends RelativeLayout {
         Calendar cal;
         Integer counter = 0;
         if (dateDisplay != null)
-            cal = (Calendar)dateDisplay.clone();
+            cal = (Calendar) dateDisplay.clone();
         else
             cal = Calendar.getInstance();
 
@@ -168,63 +157,62 @@ public class CalendarCard extends RelativeLayout {
 
         // INFO : wrong calculations of first line - fixed
         if (daySpacing > 0) {
-            Calendar prevMonth = (Calendar)cal.clone();
+            Calendar prevMonth = (Calendar) cal.clone();
             prevMonth.add(Calendar.MONTH, -1);
             prevMonth.set(Calendar.DAY_OF_MONTH, prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH) - daySpacing + 1);
-            for(int i=0; i<daySpacing; i++) {
+            for (int i = 0; i < daySpacing; i++) {
                 CheckableLayout cell = cells.get(counter);
                 cell.setTag(new CardGridItem(Integer.valueOf(prevMonth.get(Calendar.DAY_OF_MONTH))).setEnabled(false).setDate(null));
                 cell.setEnabled(false);
-                (mOnItemRender == null ? mOnItemRenderDefault : mOnItemRender).onRender(cell, (CardGridItem)cell.getTag());
+                (mOnItemRender == null ? mOnItemRenderDefault : mOnItemRender).onRender(cell, (CardGridItem) cell.getTag());
                 counter++;
                 prevMonth.add(Calendar.DAY_OF_MONTH, 1);
             }
         }
 
-        Calendar putInTag = (Calendar)cal.clone();
+        Calendar putInTag = (Calendar) cal.clone();
         int firstDay = cal.get(Calendar.DAY_OF_MONTH);
         cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-        int lastDay = cal.get(Calendar.DAY_OF_MONTH)+1;
-        for(int i=firstDay; i<lastDay; i++) {
-            cal.set(Calendar.DAY_OF_MONTH, i-1);
-            Calendar date = (Calendar)cal.clone();
+        int lastDay = cal.get(Calendar.DAY_OF_MONTH) + 1;
+        for (int i = firstDay; i < lastDay; i++) {
+            cal.set(Calendar.DAY_OF_MONTH, i - 1);
+            Calendar date = (Calendar) cal.clone();
             date.add(Calendar.DAY_OF_MONTH, 1);
             CheckableLayout cell = cells.get(counter);
             cell.setTag(new CardGridItem(i).setEnabled(true).setDate(date));
             cell.setEnabled(true);
             cell.setVisibility(View.VISIBLE);
 
-            (mOnItemRender == null ? mOnItemRenderDefault : mOnItemRender).onRender(cell, (CardGridItem)cell.getTag());
+            (mOnItemRender == null ? mOnItemRenderDefault : mOnItemRender).onRender(cell, (CardGridItem) cell.getTag());
             counter++;
         }
 
         if (dateDisplay != null)
-            cal = (Calendar)dateDisplay.clone();
+            cal = (Calendar) dateDisplay.clone();
         else
             cal = Calendar.getInstance();
 
-        putInTag = (Calendar)cal.clone();
-        putInTag.add(Calendar.DAY_OF_MONTH,1);
+        putInTag = (Calendar) cal.clone();
+        putInTag.add(Calendar.DAY_OF_MONTH, 1);
 
         cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 
         daySpacing = getDaySpacingEnd(cal.get(Calendar.DAY_OF_WEEK));
 
 
-
         if (daySpacing > 0) {
-            for(int i=0; i<daySpacing; i++) {
+            for (int i = 0; i < daySpacing; i++) {
                 CheckableLayout cell = cells.get(counter);
-                cell.setTag(new CardGridItem(i+1).setEnabled(false).setDate(null)); // .setDate((Calendar)cal.clone())
+                cell.setTag(new CardGridItem(i + 1).setEnabled(false).setDate(null)); // .setDate((Calendar)cal.clone())
                 cell.setEnabled(false);
                 cell.setVisibility(View.VISIBLE);
-                (mOnItemRender == null ? mOnItemRenderDefault : mOnItemRender).onRender(cell, (CardGridItem)cell.getTag());
+                (mOnItemRender == null ? mOnItemRenderDefault : mOnItemRender).onRender(cell, (CardGridItem) cell.getTag());
                 counter++;
             }
         }
 
         if (counter < cells.size()) {
-            for(int i=counter; i<cells.size(); i++) {
+            for (int i = counter; i < cells.size(); i++) {
                 cells.get(i).setVisibility(View.GONE);
             }
         }
@@ -235,7 +223,7 @@ public class CalendarCard extends RelativeLayout {
         super.onLayout(changed, l, t, r, b);
         if (changed && cells.size() > 0) {
             int size = (r - l) / 7;
-            for(CheckableLayout cell : cells) {
+            for (CheckableLayout cell : cells) {
                 cell.getLayoutParams().height = size;
             }
         }
@@ -266,11 +254,11 @@ public class CalendarCard extends RelativeLayout {
     public void setDateDisplay(Calendar dateDisplay) {
         this.dateDisplay = dateDisplay;
         cardMonth.setText(new SimpleDateFormat("MMMM", Locale.getDefault()).format(dateDisplay.getTime()));
-        cardYear.setText(new SimpleDateFormat("yyyy",Locale.getDefault()).format(dateDisplay.getTime()));
+        cardYear.setText(new SimpleDateFormat("yyyy", Locale.getDefault()).format(dateDisplay.getTime()));
 
     }
 
-    public void highlightToday(){
+    public void highlightToday() {
         setDateDisplay(Calendar.getInstance());
         notifyChanges();
     }

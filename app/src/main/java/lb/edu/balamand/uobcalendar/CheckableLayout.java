@@ -49,6 +49,7 @@ public class CheckableLayout extends RelativeLayout implements Checkable {
     @Override
     public void setChecked(boolean checked) {
         this.checked = checked;
+        this.checked = checked;
 
         refreshDrawableState();
 
