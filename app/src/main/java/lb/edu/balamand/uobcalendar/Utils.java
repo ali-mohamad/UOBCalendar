@@ -32,10 +32,11 @@ public class Utils {
     }
 
     public static boolean isSameDay(Calendar c1, Calendar c2) {
-        if (c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) &&
-                c1.get(Calendar.MONTH) == c2.get(Calendar.MONTH) &&
-                c1.get(Calendar.DAY_OF_MONTH) == c2.get(Calendar.DAY_OF_MONTH)) return true;
-        else return false;
+
+        if(c1.get(Calendar.YEAR) != c2.get(Calendar.YEAR)) return false;
+        if(c1.get(Calendar.MONTH) != c2.get(Calendar.MONTH)) return false;
+        if(c1.get(Calendar.DAY_OF_MONTH) != c2.get(Calendar.DAY_OF_MONTH)) return false;
+        else return  true;
     }
 
     public static boolean isSameDay(Date d1, Date d2) {
@@ -47,10 +48,10 @@ public class Utils {
     }
 
     public static boolean isSameDay(CardGridItem i, Calendar c) {
-        if ((i.getDayOfMonth() == c.get(Calendar.DAY_OF_MONTH)) &&
-                (i.getDate().get(Calendar.MONTH) == c.get(Calendar.MONTH)) &&
-                (i.getDate().get(Calendar.YEAR) == c.get(Calendar.YEAR))) {
-            return true;
-        } else return false;
+
+        if(i.getDate().get(Calendar.YEAR) != c.get(Calendar.YEAR) ) return false;
+        else if(i.getDate().get(Calendar.MONTH) != c.get(Calendar.MONTH) ) return false;
+        else if(i.getDayOfMonth() != c.get(Calendar.DAY_OF_MONTH) ) return false;
+        else return true;
     }
 }

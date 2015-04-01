@@ -121,7 +121,7 @@ public class CalendarCard extends RelativeLayout {
                             ((View) v.getChildAt(1)).setVisibility(View.VISIBLE);
                         if (Utils.isSameDay(item, Calendar.getInstance()))
                             ((TextView) v.getChildAt(0)).setBackgroundResource(R.drawable.today);
-                    }
+                   }
                 }
             }
         };
