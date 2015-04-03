@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -64,8 +65,11 @@ public class EventListAdapter extends BaseAdapter {
 
         // time
         if(m.get_isHoliday() == 1) time.setText("");
-        else
-        time.setText(String.valueOf(m.get_from_date()));
+        else {
+            SimpleDateFormat sdp = new SimpleDateFormat("dd/MM/yyyy-HH:mm");
+
+        }
+       // time.setText(String.valueOf(m.get_from_date()));
 
         return convertView;
     }

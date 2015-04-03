@@ -8,7 +8,8 @@
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="UOB Calendar"
-        android:theme="@style/CustomActionBarTheme" >
+        android:theme="@style/CustomActionBarTheme"
+        android:name=".AppController">
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"

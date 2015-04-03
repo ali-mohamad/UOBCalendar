@@ -7,5 +7,9 @@
         android:showAsAction="always"
         android:icon="@drawable/ic_action_go_to_today"
          />
+    <item android:id="@+id/reload"
+        android:title="Reload"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_refresh" />
 
 </menu>

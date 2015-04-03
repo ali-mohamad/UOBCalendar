@@ -150,8 +150,10 @@ public class CalendarDbAdapter extends SQLiteOpenHelper {
         }
         return v;
     }
-    public List<Event> getAllEvents() {
-        List<Event> eventList = new ArrayList<Event>();
+
+
+    public ArrayList<Event> getAllEvents() {
+        ArrayList<Event> eventList = new ArrayList<Event>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_EVENTS;
 

@@ -4,6 +4,7 @@ import android.text.format.DateUtils;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -13,13 +14,13 @@ import java.util.List;
  */
 public class EventsAdapter {
 
-    private static List<Event> events;
+    private static ArrayList<Event> events;
 
-    public static void setEvents(List<Event> events) {
+    public static void setEvents(ArrayList<Event> events) {
         EventsAdapter.events = events;
     }
 
-    public static List<Event> getEvents() {
+    public static ArrayList<Event> getEvents() {
         return events;
     }
 
