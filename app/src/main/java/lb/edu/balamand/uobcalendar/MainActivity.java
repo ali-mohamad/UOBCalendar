@@ -74,7 +74,7 @@ public class MainActivity extends Activity {
 
                         try {
                             JSONArray events = (JSONArray) response.getJSONArray("events");
-                            for (int i = 0; i < response.length(); i++) {
+                            for (int i = 0; i <= response.length(); i++) {
 
                                 JSONObject event = (JSONObject) events.getJSONObject(i);
                                 mEvent.add(new Event(
@@ -129,8 +129,9 @@ public class MainActivity extends Activity {
         myCalendar.setOnCellItemClick(new OnCellItemClick() {
             @Override
             public void onCellClick(View v, CardGridItem item) {
-                ArrayList<Event> intentEvents = getListofEvents(item);
 
+                ArrayList<Event> intentEvents = getListofEvents(item);
+                if(intentEvents.size() == 0) return;
                 Intent intent = new Intent(getApplicationContext(), EventActivity.class);
                 intent.putExtra("LIST_EVENTS", intentEvents);
                 intent.putExtra("TEXT_DAY",String.valueOf(item.getDate().get(Calendar.DAY_OF_MONTH)));
