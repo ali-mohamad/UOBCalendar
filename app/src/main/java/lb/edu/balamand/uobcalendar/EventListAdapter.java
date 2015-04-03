@@ -10,8 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Lenovo on 3/29/2015.
@@ -67,7 +70,10 @@ public class EventListAdapter extends BaseAdapter {
         if(m.get_isHoliday() == 1) time.setText("");
         else {
             SimpleDateFormat sdp = new SimpleDateFormat("dd/MM/yyyy-HH:mm");
-
+            Date from = sdp.parse(m.get_from_date(), new ParsePosition(0));
+            Date to = sdp.parse(m.get_to_date(), new ParsePosition(0));
+            SimpleDateFormat output = new SimpleDateFormat("HH:mm");
+            time.setText(output.format(from) + " - " + output.format(to));
         }
        // time.setText(String.valueOf(m.get_from_date()));
 

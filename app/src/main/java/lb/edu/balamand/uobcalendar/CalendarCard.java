@@ -83,7 +83,7 @@ public class CalendarCard extends RelativeLayout {
                     public void onClick(View v) {
                         for (CheckableLayout c : cells)
                             c.setChecked(false);
-                        ((CheckableLayout) v).setChecked(true);
+                      //  ((CheckableLayout) v).setChecked(true);
 
                         if (getOnCellItemClick() != null)
                             getOnCellItemClick().onCellClick(v, (CardGridItem) v.getTag()); // TODO create item
