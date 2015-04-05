@@ -19,6 +19,7 @@ public class CardPagerAdapter extends PagerAdapter {
 
     public CardPagerAdapter(Context ctx) {
         mContext = ctx;
+
     }
 
 
